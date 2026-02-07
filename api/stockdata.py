@@ -56,5 +56,7 @@ async def get_stock_data(days: int = Query(30, ge=1, le=365, description="获取
             "message": f"数据获取失败: {str(e)}"
         }, status_code=500)
 
+
 # 用于Vercel Serverless的函数入口
-handler = app
+import mangum
+handler = mangum.Mangum(app)
